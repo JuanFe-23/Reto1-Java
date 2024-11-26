@@ -10,7 +10,7 @@ public class Reto {
 
     }
 
-    private static void showMenu (Scanner sc){
+    private static void showMenu(Scanner sc) {
 
         int option;
 
@@ -29,50 +29,62 @@ public class Reto {
             System.out.println("8. Salir");
             System.out.print("Selecciona el planeta al que deseas viajar: ");
             option = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
             switch (option) {
                 case 1:
-                    //Método que muestre los datos Mercurio
+                    showPlanetData("Mercurio", 77.3, 50000);
                     break;
                 case 2:
-                    //Método que muestre los datos Venus
+                    showPlanetData("Venus", 41.4, 50000);
                     break;
                 case 3:
-                    //Método que muestre los datos Marte
+                    showPlanetData("Marte", 78.3, 50000);
                     break;
                 case 4:
-                    //Método que muestre los datos Júpiter
+                    showPlanetData("Júpiter", 628.7, 50000);
                     break;
                 case 5:
-                    //Método que muestre los datos Saturno
+                    showPlanetData("Saturno", 1275.0, 50000);
                     break;
                 case 6:
-                    //Método que muestre los datos Urano
+                    showPlanetData("Urano", 2721.0, 50000);
                     break;
                 case 7:
-                    //Método que muestre los datos Neptuno
+                    showPlanetData("Neptuno", 4351.0, 50000);
                     break;
                 case 8:
                     System.out.println("Regresa cuando estes seguro de viajar a algun planeta");
                     break;
-            
+
                 default:
-                System.err.println("Opción inválida");
+                    System.err.println("Opción inválida");
                     break;
             }
-            if (option !=8) {
+            if (option != 8) {
                 pressEnter(sc);
-                
-            }
-            
-        } while (option !=8);
 
-        
-        
+            }
+
+        } while (option != 8);
+
     }
 
-    private static void pressEnter (Scanner sc){
+    private static void pressEnter(Scanner sc) {
         System.err.println("Presione ENTER para continuar");
         sc.nextLine();
+    }
+
+    private static void showPlanetData(String planetName, double distanceMillionsKm, double speedKmH) {
+
+        var distanceKm = distanceMillionsKm * 1000000; // Convertir millones de km a km
+        var timeHours = distanceKm / speedKmH; // Tiempo en horas
+        var timeDays = timeHours / 24; // Convertir horas a días
+
+        System.out.println("===========================================");
+        System.out.println("Planeta seleccionado: " + planetName);
+        System.out.println("Distancia desde la Tierra: " + distanceKm + " km");
+        System.out.println("Velocidad de la nave: " + speedKmH + " km/h");
+        System.out.println("Tiempo estimado de viaje: " + timeDays + " días");
+        System.out.println("===========================================");
     }
 }
