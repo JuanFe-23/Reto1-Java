@@ -26,7 +26,8 @@ public class Reto {
                 case 1 -> selectPlanet(sc);
                 case 2 -> modifyTrip(sc);
                 case 3 -> calculateTrip();
-
+                //case 4 -> ;
+                // case 5 -> salir;
                 // default:
 
             }
@@ -38,10 +39,10 @@ public class Reto {
     private static void showMainMenu() {
         System.out.println("\n---- Menú Principal ----");
         System.out.println("1. Selecionar destino (PLANETA)");
-        System.out.println("2. Modificar viaje");
+        System.out.println("2. Modificar viaje y/o selecionar nave");
         System.out.println("3. Calcular viaje");
         System.out.println("4. Despegar");
-        System.out.println("5. Salir");
+        System.out.println("5. Salir de la simulación");
         System.out.print("Elige una opción: ");
 
     }
@@ -121,7 +122,7 @@ public class Reto {
     private static void resetDestination() {
         destination = "Ninguno";
         distanceMKm = 0;
-        System.out.println("Destino reiniciado");
+        System.out.println("\nDestino reiniciado");
 
     }
 
@@ -148,6 +149,8 @@ public class Reto {
 
         }
 
+        System.out.println("\nNave seleccionada: " + transport);
+
     }
 
     private static boolean calculateTrip() {
@@ -169,12 +172,16 @@ public class Reto {
         // Cálculo en días
         double timeDays = timeHours / 24;
 
-        System.out.printf("Distancia al destino: %.2f millones de km\n", distanceKm);
+        System.out.printf("Distancia al destino: %.2f de km\n", distanceKm);
         System.out.printf("Velocidad de la nave: %.2f km/h\n", speedKmH);
         System.out.printf("Tiempo estimado de viaje: %.2f días\n", timeDays);
 
         return false; // Se sale del while
 
     }
+
+
+
+
 
 }
