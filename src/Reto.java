@@ -26,6 +26,7 @@ public class Reto {
                 case 1 -> selectPlanet(sc);
                 case 2 -> modifyTrip(sc);
                 case 3 -> calculateTrip();
+                case 4 -> simulateTrip();
 
                 // default:
 
@@ -174,6 +175,37 @@ public class Reto {
         System.out.printf("Tiempo estimado de viaje: %.2f días\n", timeDays);
 
         return false; // Se sale del while
+
+    }
+
+    private static void simulateTrip() {
+        if (destination == "Ninguno" || transport == "No seleccionada") {
+            System.out.println("¡Error! Primero selecciona un destino y una nave.");
+            return; // Detiene el despegue si no se ha seleccionado destino o nave
+        }
+
+        System.out.println("\n---- Preparación para el despegue ----");
+        System.out.println("¡Iniciando cuenta regresiva!");
+        // Cuenta regresiva
+        for (int i = 5; i > 0; i--) {
+            System.out.println(i + "....");
+        }
+        System.out.println("¡Despegue exitoso!");
+
+        // Siulacion del viaje
+        for (int progress = 0; progress <= 100; progress += 20) {
+
+            System.out.println("Progreso: " + progress + "%");
+
+            if (progress == 0) {
+                System.out.println("¡Inicio del viaje!");
+            } else if (progress == 40) {
+                System.out.println("¡Vamos por la mitad del camino!");
+            } else if (progress == 100) {
+                System.out.println("¡Haz llegado a tu destino!");
+            }
+
+        }
 
     }
 
