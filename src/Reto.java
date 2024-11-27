@@ -26,7 +26,6 @@ public class Reto {
                 case 1 -> selectPlanet(sc);
                 case 2 -> modifyTrip(sc);
                 case 3 -> calculateTrip();
-                case 4 -> simulateTrip();
 
                 // default:
 
@@ -39,10 +38,10 @@ public class Reto {
     private static void showMainMenu() {
         System.out.println("\n---- Menú Principal ----");
         System.out.println("1. Selecionar destino (PLANETA)");
-        System.out.println("2. Modificar viaje");
+        System.out.println("2. Modificar viaje y/o selecionar nave");
         System.out.println("3. Calcular viaje");
         System.out.println("4. Despegar");
-        System.out.println("5. Salir");
+        System.out.println("5. Salir de la simulación");
         System.out.print("Elige una opción: ");
 
     }
@@ -122,7 +121,7 @@ public class Reto {
     private static void resetDestination() {
         destination = "Ninguno";
         distanceMKm = 0;
-        System.out.println("Destino reiniciado");
+        System.out.println("\nDestino reiniciado");
 
     }
 
@@ -149,6 +148,8 @@ public class Reto {
 
         }
 
+        System.out.println("\nNave seleccionada: " + transport);
+
     }
 
     private static boolean calculateTrip() {
@@ -170,42 +171,11 @@ public class Reto {
         // Cálculo en días
         double timeDays = timeHours / 24;
 
-        System.out.printf("Distancia al destino: %.2f millones de km\n", distanceKm);
+        System.out.printf("Distancia al destino: %.2f de km\n", distanceKm);
         System.out.printf("Velocidad de la nave: %.2f km/h\n", speedKmH);
         System.out.printf("Tiempo estimado de viaje: %.2f días\n", timeDays);
 
         return false; // Se sale del while
-
-    }
-
-    private static void simulateTrip() {
-        if (destination == "Ninguno" || transport == "No seleccionada") {
-            System.out.println("¡Error! Primero selecciona un destino y una nave.");
-            return; // Detiene el despegue si no se ha seleccionado destino o nave
-        }
-
-        System.out.println("\n---- Preparación para el despegue ----");
-        System.out.println("¡Iniciando cuenta regresiva!");
-        // Cuenta regresiva
-        for (int i = 5; i > 0; i--) {
-            System.out.println(i + "....");
-        }
-        System.out.println("¡Despegue exitoso!");
-
-        // Siulacion del viaje
-        for (int progress = 0; progress <= 100; progress += 20) {
-
-            System.out.println("Progreso: " + progress + "%");
-
-            if (progress == 0) {
-                System.out.println("¡Inicio del viaje!");
-            } else if (progress == 40) {
-                System.out.println("¡Vamos por la mitad del camino!");
-            } else if (progress == 100) {
-                System.out.println("¡Haz llegado a tu destino!");
-            }
-
-        }
 
     }
 
