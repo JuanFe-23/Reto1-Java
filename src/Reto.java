@@ -17,7 +17,6 @@ public class Reto {
         System.out.println("===========================================");
 
         Scanner sc = new Scanner(System.in);
-        
 
         while (continuee) {
             showMainMenu();
@@ -32,7 +31,7 @@ public class Reto {
                 case 5 -> simulateTrip(sc);
                 case 6 -> finish();
 
-                default-> System.err.println("Opción inválida");
+                default -> System.err.println("Opción inválida");
 
             }
 
@@ -58,8 +57,8 @@ public class Reto {
             System.out.println("\nTu destino es: " + destination);
             System.out.println("Debes modificar tu viaje si deseas cambiar de destino (Opción 2)");
             return;
-            
-        } 
+
+        }
         System.out.println("\n---- Planetas disponibles ----\n");
         System.out.println("1. Mercurio (91.7 millones de km)");
         System.out.println("2. Venus (42.4 millones de km)");
@@ -109,7 +108,6 @@ public class Reto {
         }
         System.out.println("\nDestino seleccionado: " + destination);
 
-        
     }
 
     private static void modifyTrip(Scanner sc) {
@@ -195,10 +193,14 @@ public class Reto {
     }
 
     private static void simulateTrip(Scanner sc) {
-        
+
         if (destination == "Ninguno" || transport == "No seleccionada") {
             System.out.println("¡Error! Primero selecciona un destino y una nave.");
             return; // Detiene el despegue si no se ha seleccionado destino o nave
+        }
+        if (availableFuel < 5000 && availableOxygen < 200) {
+            System.out.println("No puedes despegar sin antes llenar los requerimientos de la nave");
+            return;
         }
 
         System.out.println("\n---- Preparación para el despegue ----");
@@ -231,19 +233,23 @@ public class Reto {
     private static void randomEvent(Scanner sc) {
         Random rm = new Random();
 
-        String[] problems  = {
-            "¡Tenemos una falla en el sistema! :O",
-            "¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o",
-            "¡La nave se está desviando! Debemos volver al curso"
+        String[] problems = {
+                "¡Tenemos una falla en el sistema! :O",
+                "¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o",
+                "¡La nave se está desviando! Debemos volver al curso"
         };
 
-        String [][] options = {
-            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave"},
-            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave\""},
-            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave"}
+        String[][] options = {
+                { "1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema",
+                        "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave" },
+                { "1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema",
+                        "2. Revisar los instrumentos y volver a calibrarlos",
+                        "3. Tomar el control manual de la nave\"" },
+                { "1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema",
+                        "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave" }
         };
 
-        int[] correctAnswers = {1,3,2};
+        int[] correctAnswers = { 1, 3, 2 };
 
         int event = rm.nextInt(problems.length); // Creación del evento aleatorio
 
@@ -262,9 +268,9 @@ public class Reto {
             System.out.println("Podemos continuar el viaje");
         } else {
             System.out.println("Te has equivocado y el viaje fue un desaste");
-            finish();   
-        }        
-        
+            finish();
+        }
+
     }
 
     private static double availableFuel = 5000; // En litros
@@ -330,7 +336,7 @@ public class Reto {
 
     }
 
-    private static void finish(){
+    private static void finish() {
         System.out.println("\nVuelve cuando quieras realizar otra simulación\n");
         continuee = false;
     }
