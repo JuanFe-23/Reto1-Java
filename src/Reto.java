@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Reto {
@@ -187,22 +188,23 @@ public class Reto {
         }
 
         System.out.println("\n---- Preparación para el despegue ----");
-        System.out.println("¡Iniciando cuenta regresiva!");
+        System.out.println("\n¡Iniciando cuenta regresiva!");
         // Cuenta regresiva
         for (int i = 5; i > 0; i--) {
             System.out.println(i + "....");
         }
-        System.out.println("¡Despegue exitoso!");
+        System.out.println("\n¡Despegue exitoso!");
 
-        // Siulacion del viaje
+        // Simulación del viaje
         for (int progress = 0; progress <= 100; progress += 20) {
 
             System.out.println("Progreso: " + progress + "%");
 
             if (progress == 0) {
-                System.out.println("¡Inicio del viaje!");
+                System.out.println("\n¡Inicio del viaje!");
             } else if (progress == 40) {
                 System.out.println("¡Vamos por la mitad del camino!");
+                randomEvent(null);
             } else if (progress == 100) {
                 System.out.println("¡Haz llegado a tu destino!");
             }
@@ -210,5 +212,34 @@ public class Reto {
         }
 
     }
+
+    private static void randomEvent(Scanner sc) {
+        Random rm = new Random();
+
+        int event = rm.nextInt(3) + 1;
+
+        switch (event) {
+            case 1:
+            System.out.println("\nEvento 1: ¡Tenemos una falla en el sistema! :O");
+                break;
+            case 2:
+            System.out.println("\nEvento 2: ¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o");
+                break;
+            case 3:
+            System.out.println("\nEvento 3: ¡La nave se está desviando! Debemos volver al curso");
+                break;
+            default:
+                break;
+        }
+
+        /*if (event == 1) {
+            System.out.println("Debes arreglar el problema !!!!");
+            System.out.println("1. Reiniciar el sistema");
+            System.out.println("2. Revisar los instrumentos y ejecutar un analisis para solucionar el problema");
+            System.out.println("");
+            
+        }*/
+    }
+
 
 }
