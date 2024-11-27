@@ -197,9 +197,8 @@ public class Reto {
         if (destination == "Ninguno" || transport == "No seleccionada") {
             System.out.println("¡Error! Primero selecciona un destino y una nave.");
             return; // Detiene el despegue si no se ha seleccionado destino o nave
-        }
-        if (availableFuel < 5000 && availableOxygen < 200) {
-            System.out.println("No puedes despegar sin antes llenar los requerimientos de la nave");
+        } else if (availableFuel == 5000 && availableOxygen == 200) {
+            System.out.println("No puedes despegar sin antes gestionar los recursos de la nave");
             return;
         }
 
@@ -234,9 +233,9 @@ public class Reto {
         Random rm = new Random();
 
         String[] problems = {
-                "¡Tenemos una falla en el sistema! :O",
-                "¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o",
-                "¡La nave se está desviando! Debemos volver al curso"
+                "¡Tenemos una falla en el sistema! :O\n",
+                "¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o\n",
+                "¡La nave se está desviando! Debemos volver al curso\n"
         };
 
         String[][] options = {
@@ -260,14 +259,15 @@ public class Reto {
             System.out.println(option);
         }
         System.out.println("\n--- Debes arreglar el problema !!!! ---\n");
-        System.out.print("Seleccina la opción para solucionar el problema: ");
+        System.out.print("Seleccina la solución correcta: ");
         int answer = sc.nextInt();
 
-        if (answer - 1 == correctAnswers[event]) {
-            System.out.println("Muy bien!! Problema resueldo");
-            System.out.println("Podemos continuar el viaje");
+        if (answer == correctAnswers[event]) {
+            System.out.println("\nMuy bien!! Problema resueldo");
+            System.out.println("Podemos continuar el viaje\n");
         } else {
-            System.out.println("Te has equivocado y el viaje fue un desaste");
+            System.out.println("Te has equivocado y el viaje fue un desastre");
+            System.out.println("\n--- ¡Fin de la simulación! ---");
             finish();
         }
 
