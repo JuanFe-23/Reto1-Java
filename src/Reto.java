@@ -30,7 +30,7 @@ public class Reto {
                 case 4 -> manageResources(sc);
                 case 5 -> simulateTrip();
 
-                // default:
+                default-> System.err.println("Opción inválida");
 
             }
 
@@ -51,6 +51,13 @@ public class Reto {
     }
 
     private static void selectPlanet(Scanner sc) {
+
+        if (destination != "Ninguno") {
+            System.out.println("\nTu destino es: " + destination);
+            System.out.println("Debes modificar tu viaje si deseas cambiar de destino (Opción 2)");
+            return;
+            
+        } 
         System.out.println("\n---- Planetas disponibles ----\n");
         System.out.println("1. Mercurio (91.7 millones de km)");
         System.out.println("2. Venus (42.4 millones de km)");
@@ -99,6 +106,8 @@ public class Reto {
 
         }
         System.out.println("\nDestino seleccionado: " + destination);
+
+        
     }
 
     private static void modifyTrip(Scanner sc) {
@@ -272,7 +281,7 @@ public class Reto {
         // Verificar si los recursos son suficientes
 
         while (requiredFuel > availableFuel || requiredOxygen > availableOxygen) {
-            System.out.println("\n¡Atención! No tienes suficientes recursos para el viaje.");
+            System.out.println("\n¡Atención! NO tienes suficientes recursos para el viaje.");
             System.out.println("1. Reabastecer combustible");
             System.out.println("2. Reabastecer oxígeno");
             System.out.print("Elige una opción: ");
@@ -284,9 +293,8 @@ public class Reto {
                     System.out.print("¿Cuántos litros de combustible deseas añadir?: ");
                     double fuelToAdd = sc.nextDouble();
                     availableFuel += fuelToAdd;
-                    System.out
-                            .println("Combustible reabastecido. Combustible disponible: " + availableFuel
-                                    + " litros.");
+                    System.out.println("Combustible reabastecido. Combustible disponible: " + availableFuel
+                            + " litros.");
                 }
                 case 2 -> {
                     System.out.print("¿Cuántas horas de oxígeno deseas añadir?: ");
