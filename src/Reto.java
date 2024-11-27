@@ -211,25 +211,35 @@ public class Reto {
         System.out.println("\n¡Despegue exitoso!\n");
 
         // Simulación del viaje
+        
         for (int progress = 0; progress <= 100; progress += 20) {
 
-            System.out.println("Progreso: " + progress + "%");
-
+            System.out.println("\nProgreso: " + progress + "%");
+            
             if (progress == 0) {
                 System.out.println("\n¡Inicio del viaje!");
             } else if (progress == 40) {
                 System.out.println("¡Vamos por la mitad del camino!");
-                randomEvent(sc);
+                boolean next = randomEvent(sc);
+                if (!next) {
+                    System.out.println("\n--- Fin de la simulación ---");
+                    break;
+                    
+                }
+                
             } else if (progress == 100) {
                 System.out.println("¡Haz llegado a tu destino!");
                 continuee = false;
             }
+  
 
         }
 
+        finish();
+
     }
 
-    private static void randomEvent(Scanner sc) {
+    private static boolean randomEvent(Scanner sc) {
         Random rm = new Random();
 
         String[] problems = {
@@ -243,7 +253,7 @@ public class Reto {
                         "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave" },
                 { "1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema",
                         "2. Revisar los instrumentos y volver a calibrarlos",
-                        "3. Tomar el control manual de la nave\"" },
+                        "3. Tomar el control manual de la nave" },
                 { "1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema",
                         "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave" }
         };
@@ -265,11 +275,13 @@ public class Reto {
         if (answer == correctAnswers[event]) {
             System.out.println("\nMuy bien!! Problema resueldo");
             System.out.println("Podemos continuar el viaje\n");
+            return true;
         } else {
-            System.out.println("Te has equivocado y el viaje fue un desastre");
-            System.out.println("\n--- ¡Fin de la simulación! ---");
-            finish();
+            System.out.println("\nTe has equivocado y el viaje fue un desastre");
+            return false;    
         }
+
+        
 
     }
 
