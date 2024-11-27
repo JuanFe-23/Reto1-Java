@@ -27,7 +27,8 @@ public class Reto {
                 case 1 -> selectPlanet(sc);
                 case 2 -> modifyTrip(sc);
                 case 3 -> calculateTrip();
-                case 4 -> simulateTrip();
+                case 4 -> manageResources(sc);
+                case 5 -> simulateTrip();
 
                 // default:
 
@@ -42,8 +43,9 @@ public class Reto {
         System.out.println("1. Selecionar destino (PLANETA)");
         System.out.println("2. Seleciona el tipo de nave y/o modificar el viaje ");
         System.out.println("3. Calcular viaje");
-        System.out.println("4. Despegar");
-        System.out.println("5. Salir de la simulación");
+        System.out.println("4. Gestionar recursos de la nave");
+        System.out.println("5. Despegar");
+        System.out.println("6. Salir de la simulación");
         System.out.print("Elige una opción: ");
 
     }
@@ -220,13 +222,13 @@ public class Reto {
 
         switch (event) {
             case 1:
-            System.out.println("\nEvento 1: ¡Tenemos una falla en el sistema! :O");
+                System.out.println("\nEvento 1: ¡Tenemos una falla en el sistema! :O");
                 break;
             case 2:
-            System.out.println("\nEvento 2: ¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o");
+                System.out.println("\nEvento 2: ¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o");
                 break;
             case 3:
-            System.out.println("\nEvento 3: ¡La nave se está desviando! Debemos volver al curso");
+                System.out.println("\nEvento 3: ¡La nave se está desviando! Debemos volver al curso");
                 break;
             default:
                 break;
@@ -237,9 +239,71 @@ public class Reto {
             System.out.println("1. Reiniciar el sistema");
             System.out.println("2. Revisar los instrumentos y ejecutar un analisis para solucionar el problema");
             System.out.println("3. Pídele a Dios que te ayude ");
-            
+
         }
     }
 
+    private static double availableFuel = 5000; // En litros
+    private static double availableOxygen = 200; // En horas
+    private static double requiredFuel = 0; // Combustible necesario para el viaje
+    private static double requiredOxygen = 0; // Oxígeno necesario para el viaje
 
+    private static void manageResources(Scanner sc) {
+
+        if (destination == "Ninguno") {
+            System.out.println("\n¡Error! Primero debes seleccionar un destino.");
+            return; // Sale del método si no se ha seleccionado un destino
+        }
+
+        System.out.println("\n---- Gestión de Recursos ----");
+
+        double distanceKm = distanceMKm * 1_000_000;
+
+        requiredFuel = distanceKm * 0.05; // Combustible necesario: 0.05 litros por km
+        requiredOxygen = distanceMKm * 24; // Oxígeno necesario: 24 horas por cada millón de km
+
+        // Mostrar los recursos necesarios y los disponibles
+
+        System.out.printf("Combustible necesario: %.2f litros\n", requiredFuel);
+        System.out.printf("Oxígeno necesario: %.2f horas\n", requiredOxygen);
+        System.out.printf("Combustible disponible: %.2f litros\n", availableFuel);
+        System.out.printf("Oxígeno disponible: %.2f horas\n", availableOxygen);
+
+        // Verificar si los recursos son suficientes
+
+        while (requiredFuel > availableFuel || requiredOxygen > availableOxygen) {
+            System.out.println("\n¡Atención! No tienes suficientes recursos para el viaje.");
+            System.out.println("1. Reabastecer combustible");
+            System.out.println("2. Reabastecer oxígeno");
+            System.out.print("Elige una opción: ");
+
+            int option = sc.nextInt();
+
+            switch (option) {
+                case 1 -> {
+                    System.out.print("¿Cuántos litros de combustible deseas añadir?: ");
+                    double fuelToAdd = sc.nextDouble();
+                    availableFuel += fuelToAdd;
+                    System.out
+                            .println("Combustible reabastecido. Combustible disponible: " + availableFuel
+                                    + " litros.");
+                }
+                case 2 -> {
+                    System.out.print("¿Cuántas horas de oxígeno deseas añadir?: ");
+                    double oxygenToAdd = sc.nextDouble();
+                    availableOxygen += oxygenToAdd;
+                    System.out.println("Oxígeno reabastecido. Oxígeno disponible: " + availableOxygen + " horas.");
+                }
+                default -> System.err.println("Opción no válida.");
+            }
+
+            System.out.printf("Combustible necesario: %.2f litros\n", requiredFuel);
+            System.out.printf("Oxígeno necesario: %.2f horas\n", requiredOxygen);
+            System.out.printf("Combustible disponible: %.2f litros\n", availableFuel);
+            System.out.printf("Oxígeno disponible: %.2f horas\n", availableOxygen);
+        }
+
+        System.out.println("\n¡Todo listo! Tienes suficientes recursos para el viaje.");
+
+    }
 }
