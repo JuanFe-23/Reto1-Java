@@ -7,6 +7,7 @@ public class Reto {
     private static String transport = "No seleccionada";
     private static double distanceMKm = 0;
     private static double speedKmH = 0;
+    private static boolean continuee = true;
 
     public static void main(String[] args) throws Exception {
 
@@ -16,7 +17,7 @@ public class Reto {
         System.out.println("===========================================");
 
         Scanner sc = new Scanner(System.in);
-        boolean continuee = true;
+        
 
         while (continuee) {
             showMainMenu();
@@ -29,6 +30,7 @@ public class Reto {
                 case 3 -> calculateTrip();
                 case 4 -> manageResources(sc);
                 case 5 -> simulateTrip();
+                case 6 -> finish();
 
                 default-> System.err.println("Opción inválida");
 
@@ -218,6 +220,7 @@ public class Reto {
                 randomEvent(null);
             } else if (progress == 100) {
                 System.out.println("¡Haz llegado a tu destino!");
+                continuee = false;
             }
 
         }
@@ -227,29 +230,41 @@ public class Reto {
     private static void randomEvent(Scanner sc) {
         Random rm = new Random();
 
-        int event = rm.nextInt(3) + 1;
+        String[] problems  = {
+            "¡Tenemos una falla en el sistema! :O",
+            "¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o",
+            "¡La nave se está desviando! Debemos volver al curso"
+        };
 
-        switch (event) {
-            case 1:
-                System.out.println("\nEvento 1: ¡Tenemos una falla en el sistema! :O");
-                break;
-            case 2:
-                System.out.println("\nEvento 2: ¡Se aproxima una lluvia de asteroides! ¿Qué hacemos? O.o");
-                break;
-            case 3:
-                System.out.println("\nEvento 3: ¡La nave se está desviando! Debemos volver al curso");
-                break;
-            default:
-                break;
+        String [][] options = {
+            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave"},
+            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave\""},
+            {"1. Reiniciar el sistema y ejecutar un análisis para encontrar el problema", "2. Revisar los instrumentos y volver a calibrarlos", "3. Tomar el control manual de la nave"}
+        };
+
+        int[] correctAnswers = {1,3,2};
+
+        int event = rm.nextInt(problems.length); // Creación del evento aleatorio
+
+        System.out.println("\n¡Poseemos un problema!\n");
+        System.out.println(problems[event]);
+
+        for (String option : options[event]) {
+            System.out.println("\n"+ option);
         }
+        System.out.println("\n--- Debes arreglar el problema !!!! ---\n");
+        System.out.println("Seleccina la opción para solucionar el problema...");
+        int answer = sc.nextInt();
 
-        if (event == 1 || event == 2 || event == 3) {
-            System.out.println("Debes arreglar el problema !!!!");
-            System.out.println("1. Reiniciar el sistema");
-            System.out.println("2. Revisar los instrumentos y ejecutar un analisis para solucionar el problema");
-            System.out.println("3. Pídele a Dios que te ayude ");
-
+        if (answer - 1 == correctAnswers[event]) {
+            System.out.println("Muy bien!! Problema resueldo");
+            System.out.println("Podemos continuar el viaje");
+        } else {
+            System.out.println("Te has equivocado y el viaje fue un desaste");
+            continuee = false;   
         }
+        
+        
     }
 
     private static double availableFuel = 5000; // En litros
@@ -313,5 +328,10 @@ public class Reto {
 
         System.out.println("\n¡Todo listo! Tienes suficientes recursos para el viaje.");
 
+    }
+
+    private static void finish(){
+        System.out.println("\nVuelve cuando quieras realizar otra somulación ");
+        continuee = false;
     }
 }
