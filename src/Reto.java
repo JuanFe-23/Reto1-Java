@@ -228,7 +228,7 @@ public class Reto {
                 }
                 
             } else if (progress == 100) {
-                System.out.println("¡Haz llegado a tu destino!");
+                System.out.println("¡Has llegado a tu destino!");
                 continuee = false;
             }
   
