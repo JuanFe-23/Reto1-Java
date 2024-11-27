@@ -10,7 +10,7 @@ public class Reto {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("===========================================");
+        System.out.println("\n===========================================");
         System.out.println("---- Simulacion ----");
         System.out.println("Vamos a otro planeta !!");
         System.out.println("===========================================");
@@ -38,9 +38,9 @@ public class Reto {
     }
 
     private static void showMainMenu() {
-        System.out.println("\n---- Menú Principal ----");
+        System.out.println("\n---- Menú Principal ----\n");
         System.out.println("1. Selecionar destino (PLANETA)");
-        System.out.println("2. Modificar viaje y/o selecionar nave");
+        System.out.println("2. Seleciona el tipo de nave y/o modificar el viaje ");
         System.out.println("3. Calcular viaje");
         System.out.println("4. Despegar");
         System.out.println("5. Salir de la simulación");
@@ -49,7 +49,7 @@ public class Reto {
     }
 
     private static void selectPlanet(Scanner sc) {
-        System.out.println("\n---- Planetas disponibles ----");
+        System.out.println("\n---- Planetas disponibles ----\n");
         System.out.println("1. Mercurio (91.7 millones de km)");
         System.out.println("2. Venus (42.4 millones de km)");
         System.out.println("3. Marte (78.3 millones de km)");
@@ -105,7 +105,7 @@ public class Reto {
             return;
         }
 
-        System.out.println("\n--- Modificar viaje ---");
+        System.out.println("\n--- Modificar viaje ---\n");
         System.out.println("1. Cambiar el destino");
         System.out.println("2. Seleccionar tipo de nave");
         System.out.print("Elige una opción: ");
@@ -128,7 +128,7 @@ public class Reto {
     }
 
     private static void selectShip(Scanner sc) {
-        System.out.println("\n---- Tipos de nave ----");
+        System.out.println("\n---- Tipos de nave ----\n");
         System.out.println("1. Nave Espacial (Velocidad: 28,000 km/h - Nivel de comodidad: Alta) ");
         System.out.println("2. Cohete (Velocidad: 40,000 km/h - Nivel de comodidad: Baja)");
         System.out.print("Selecciona el tipo de nave: ");
@@ -232,13 +232,13 @@ public class Reto {
                 break;
         }
 
-        /*if (event == 1) {
+        if (event == 1 || event == 2 || event == 3) {
             System.out.println("Debes arreglar el problema !!!!");
             System.out.println("1. Reiniciar el sistema");
             System.out.println("2. Revisar los instrumentos y ejecutar un analisis para solucionar el problema");
-            System.out.println("");
+            System.out.println("3. Pídele a Dios que te ayude ");
             
-        }*/
+        }
     }
 
 
