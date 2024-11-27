@@ -12,7 +12,7 @@ public class Reto {
     public static void main(String[] args) throws Exception {
 
         System.out.println("\n===========================================");
-        System.out.println("---- Simulacion ----");
+        System.out.println("---- Simulación ----");
         System.out.println("Vamos a otro planeta !!");
         System.out.println("===========================================");
 
@@ -29,7 +29,7 @@ public class Reto {
                 case 2 -> modifyTrip(sc);
                 case 3 -> calculateTrip();
                 case 4 -> manageResources(sc);
-                case 5 -> simulateTrip();
+                case 5 -> simulateTrip(sc);
                 case 6 -> finish();
 
                 default-> System.err.println("Opción inválida");
@@ -194,7 +194,8 @@ public class Reto {
 
     }
 
-    private static void simulateTrip() {
+    private static void simulateTrip(Scanner sc) {
+        
         if (destination == "Ninguno" || transport == "No seleccionada") {
             System.out.println("¡Error! Primero selecciona un destino y una nave.");
             return; // Detiene el despegue si no se ha seleccionado destino o nave
@@ -206,7 +207,7 @@ public class Reto {
         for (int i = 5; i > 0; i--) {
             System.out.println(i + "....");
         }
-        System.out.println("\n¡Despegue exitoso!");
+        System.out.println("\n¡Despegue exitoso!\n");
 
         // Simulación del viaje
         for (int progress = 0; progress <= 100; progress += 20) {
@@ -217,7 +218,7 @@ public class Reto {
                 System.out.println("\n¡Inicio del viaje!");
             } else if (progress == 40) {
                 System.out.println("¡Vamos por la mitad del camino!");
-                randomEvent(null);
+                randomEvent(sc);
             } else if (progress == 100) {
                 System.out.println("¡Haz llegado a tu destino!");
                 continuee = false;
@@ -250,10 +251,10 @@ public class Reto {
         System.out.println(problems[event]);
 
         for (String option : options[event]) {
-            System.out.println("\n"+ option);
+            System.out.println(option);
         }
         System.out.println("\n--- Debes arreglar el problema !!!! ---\n");
-        System.out.println("Seleccina la opción para solucionar el problema...");
+        System.out.print("Seleccina la opción para solucionar el problema: ");
         int answer = sc.nextInt();
 
         if (answer - 1 == correctAnswers[event]) {
@@ -261,9 +262,8 @@ public class Reto {
             System.out.println("Podemos continuar el viaje");
         } else {
             System.out.println("Te has equivocado y el viaje fue un desaste");
-            continuee = false;   
-        }
-        
+            finish();   
+        }        
         
     }
 
@@ -296,7 +296,7 @@ public class Reto {
         // Verificar si los recursos son suficientes
 
         while (requiredFuel > availableFuel || requiredOxygen > availableOxygen) {
-            System.out.println("\n¡Atención! NO tienes suficientes recursos para el viaje.");
+            System.out.println("\n¡Atención! NO tienes suficientes recursos para el viaje.\n");
             System.out.println("1. Reabastecer combustible");
             System.out.println("2. Reabastecer oxígeno");
             System.out.print("Elige una opción: ");
@@ -305,14 +305,14 @@ public class Reto {
 
             switch (option) {
                 case 1 -> {
-                    System.out.print("¿Cuántos litros de combustible deseas añadir?: ");
+                    System.out.print("\n¿Cuántos litros de combustible deseas añadir?: ");
                     double fuelToAdd = sc.nextDouble();
                     availableFuel += fuelToAdd;
                     System.out.println("Combustible reabastecido. Combustible disponible: " + availableFuel
                             + " litros.");
                 }
                 case 2 -> {
-                    System.out.print("¿Cuántas horas de oxígeno deseas añadir?: ");
+                    System.out.print("\n¿Cuántas horas de oxígeno deseas añadir?: ");
                     double oxygenToAdd = sc.nextDouble();
                     availableOxygen += oxygenToAdd;
                     System.out.println("Oxígeno reabastecido. Oxígeno disponible: " + availableOxygen + " horas.");
@@ -331,7 +331,7 @@ public class Reto {
     }
 
     private static void finish(){
-        System.out.println("\nVuelve cuando quieras realizar otra somulación ");
+        System.out.println("\nVuelve cuando quieras realizar otra simulación\n");
         continuee = false;
     }
 }
