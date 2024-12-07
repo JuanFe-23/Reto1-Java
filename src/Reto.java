@@ -211,11 +211,11 @@ public class Reto {
         System.out.println("\n¡Despegue exitoso!\n");
 
         // Simulación del viaje
-        
+
         for (int progress = 0; progress <= 100; progress += 20) {
 
             System.out.println("\nProgreso: " + progress + "%");
-            
+
             if (progress == 0) {
                 System.out.println("\n¡Inicio del viaje!");
             } else if (progress == 40) {
@@ -224,18 +224,32 @@ public class Reto {
                 if (!next) {
                     System.out.println("\n--- Fin de la simulación ---");
                     break;
-                    
+
                 }
-                
+
             } else if (progress == 100) {
                 System.out.println("¡Has llegado a tu destino!");
                 continuee = false;
             }
-  
 
         }
 
-        finish();
+        sc.nextLine();
+
+        System.out.print("\n¿Deseas realizar otra simulación? (si / no): ");
+        String answer = sc.nextLine();
+
+        if (answer.equals("si")) {
+            resetDestination();
+            availableFuel = 5000;
+            availableOxygen = 200; // En horas
+            requiredFuel = 0; // Combustible necesario para el viaje
+            requiredOxygen = 0;
+
+            continuee = true;
+        } else {
+            finish();
+        }
 
     }
 
@@ -278,10 +292,8 @@ public class Reto {
             return true;
         } else {
             System.out.println("\nTe has equivocado y el viaje fue un desastre");
-            return false;    
+            return false;
         }
-
-        
 
     }
 
